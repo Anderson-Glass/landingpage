@@ -1,0 +1,2 @@
+# Keep the existing apex canonical hostname; never redirect pages.dev to live.
+https://www.andersonglass.com.au/* https://andersonglass.com.au/:splat 301
