@@ -16,11 +16,10 @@ Glazier
 4. Contractor
 
 ## Address
-794 Belgrave Hallam Road, Narre Warren East VIC 3804
+**Hidden. Base: Narre Warren East, VIC.** No street address is published on the website or the listing.
 
-**Decision needed:** show the workshop address, or hide it and set service areas?
-Hidden is normal for a glazier who works at customers' sites. Showing it helps trust and local ranking.
-If hidden, Google asks for service areas — use: Narre Warren, Berwick, Cranbourne, Pakenham, Dandenong,
+Ben's decision (2026-11-07): hide the address, publish service areas only. The website now shows
+"Based in Narre Warren East, VIC" with no street. Google asks for service areas — use: Narre Warren, Berwick, Cranbourne, Pakenham, Dandenong,
 Hallam, Officer, Beaconsfield, Narre Warren East, Narre Warren North, Endeavour Hills, Hampton Park.
 
 ## Phone
