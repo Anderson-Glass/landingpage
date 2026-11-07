@@ -413,7 +413,7 @@ def build_home():
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Opens your email app pre-filled — no third-party form service, nothing stored on this site. Attach photos there.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. We reply to the email address or phone number you give us; photos can follow by reply.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -844,7 +844,7 @@ def build_quote():
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Opens your email app pre-filled — no third-party form service, nothing stored on this site. Attach photos there.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. We reply to the email address or phone number you give us; photos can follow by reply.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>

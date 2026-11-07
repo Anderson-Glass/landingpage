@@ -134,7 +134,7 @@
         if (btn) { btn.disabled = false; }
         if (r.ok && r.data && r.data.ok) {
           form.reset();
-          status.textContent = 'Thanks — that's been sent. Ben will come back to you shortly.';
+          status.textContent = 'Thanks — that was sent. Ben will come back to you shortly.';
           return;
         }
         // not configured, provider error or network: never lose the lead
