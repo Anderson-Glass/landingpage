@@ -22,6 +22,16 @@ HOME_FAQ = C.HOME_FAQ
 
 ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5.5M13 3v7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>'
 
+# A second, different photo for each service page so the detail plate is never
+# a repeat of the hero image above it.
+SECOND_IMG = {
+    "commercial-glazing": "curved-glass",
+    "office-partitions": "office-glass",
+    "shower-screens": "frameless-shower",
+    "glass-replacement": "patio-sliders",
+    "wardrobes-and-mirrors": "mirror-tv",
+}
+
 LOGO = """<svg viewBox="0 0 40 40" fill="none" aria-hidden="true" width="36" height="36">
 <rect x="1" y="1" width="38" height="38" stroke="currentColor" stroke-width="1.6"/>
 <path d="M1 13.5h38M13.5 1v38" stroke="currentColor" stroke-width="1.6"/>
@@ -38,7 +48,7 @@ def img(name, alt="", sizes="100vw", cls="", priority=False):
             f'alt="{alt}" width="1280" height="960"{lp}{c} decoding="async">')
 
 
-def head(title, desc, path, extra_json=None, og_img="hero-corridor"):
+def head(title, desc, path, extra_json=None, og_img="hero-glass"):
     ld = {
         "@context": "https://schema.org",
         "@graph": [
@@ -47,7 +57,7 @@ def head(title, desc, path, extra_json=None, og_img="hero-corridor"):
                 "@id": SITE + "/#org",
                 "name": ORG["name"], "legalName": ORG["legal"], "url": SITE + "/",
                 "telephone": ORG["tel"], "email": ORG["email"],
-                "image": SITE + "/images/hero-corridor-1280.webp",
+                "image": SITE + "/images/hero-glass-1280.webp",
                 "logo": SITE + "/assets/favicon.svg",
                 "priceRange": "Quote on inspection",
                 "address": {"@type": "PostalAddress",
@@ -160,7 +170,7 @@ def footer():
 </footer>"""
 
 
-def shell(title, desc, path, body, active="", extra_json=None, og_img="hero-corridor"):
+def shell(title, desc, path, body, active="", extra_json=None, og_img="hero-glass"):
     page = f"""<!doctype html>
 <html lang="en-AU" data-theme="paper">
 <head>
@@ -269,7 +279,7 @@ def build_home():
           </div>
         </div>
         <div class="hero-fig">
-          {img('hero-corridor', 'Glass corridor in a Melbourne office fitout', priority=True)}
+          {img('hero-glass', 'Curved glass partition in a black frame, Melbourne fitout', priority=True)}
           <div class="anno anno--tr"><b>10 mm</b><br>toughened<br>AS 1288</div>
           <div class="anno anno--bl"><b>Frameless</b><br>patch fixed</div>
         </div>
@@ -466,7 +476,7 @@ def build_service(s):
         <h3>Typical scope</h3>
         <ul>{''.join(f'<li>{i}</li>' for i in s['includes'])}</ul>
       </div>
-      <div class="split-fig">{plate(s['img'], html.unescape(s['title']), 'AG-DETAIL', sizes='(max-width:860px) 100vw, 50vw')}</div>
+      <div class="split-fig">{plate(SECOND_IMG.get(s['slug'], s['img']), html.unescape(s['title']), 'AG-DETAIL', sizes='(max-width:860px) 100vw, 50vw')}</div>
     </div>
   </section>
 
@@ -523,7 +533,7 @@ def build_services_index():
 <main id="main">
   {phero("Services", "Five lines of <em>glass work.</em>",
          "Commercial glazing, office partitions, shower screens, replacement glass and mirrors — supplied and installed across Melbourne by the same glazier.",
-         [("/", "Home")], fig="office-floor", ref="INDEX")}
+         [("/", "Home")], fig="facade-green", ref="INDEX")}
   <section class="sect wrap">
     <div class="sect-meta"><span class="lbl">Sheet 01 — Scope</span><span class="lbl">All services</span></div>
     <div class="ledger reveal">{ledger}</div>
@@ -535,7 +545,7 @@ def build_services_index():
         <p>Measure the opening as it is now, not as the drawing says it will be. Name the make-up and the standard it is selected under, in writing. Install it with the person who measured it on site.</p>
         <p>It sounds obvious. It is also the difference between a screen that still closes cleanly in five years and one that does not close cleanly in five weeks.</p>
       </div>
-      <div class="split-fig">{plate('partition-run', 'Partition run', 'AG-021', sizes='(max-width:860px) 100vw, 50vw')}</div>
+      <div class="split-fig">{plate('partitions-boardroom', 'Partition run', 'AG-021', sizes='(max-width:860px) 100vw, 50vw')}</div>
     </div>
   </section>
   <section class="sect cta">
@@ -569,7 +579,7 @@ def build_projects():
 <main id="main">
   {phero("Work", "Considered glazing.<br>Real <em>sites.</em>",
          "Offices, fitouts and bathrooms across Melbourne — photographed on completion. No stock imagery passed off as our work.",
-         [("/", "Home")], fig="office-floor", ref="PLATES")}
+         [("/", "Home")], fig="curved-glass", ref="PLATES")}
   <section class="sect wrap">
     <div class="sect-meta"><span class="lbl">Sheet 01 — Project stories</span><span class="lbl">Three jobs in detail</span></div>
     <div class="plates" style="grid-template-columns:repeat(3,1fr)">{stories}</div>
@@ -590,7 +600,7 @@ def build_projects():
 </main>"""
     shell("Projects — Anderson Glass & Glazing, Melbourne",
           "Completed glazing projects across Melbourne: office fitouts, glass partitions, mirrors and frameless shower screens.",
-          "/projects/", body, active="/projects/", og_img="office-floor")
+          "/projects/", body, active="/projects/", og_img="facade-green")
 
 
 def build_case(p):
@@ -635,7 +645,7 @@ def build_area(a):
     body = f"""
 <main id="main">
   {phero("Service area", f"{a['name']}<br><em>glazing.</em>", a['blurb'],
-         [("/", "Home"), ("/service-areas/", "Areas")], fig="office-floor", ref="AREA")}
+         [("/", "Home"), ("/service-areas/", "Areas")], fig="patio-sliders", ref="AREA")}
   <section class="sect wrap">
     <div class="split">
       <div class="prose reveal">
@@ -645,7 +655,7 @@ def build_area(a):
         <ul style="columns:2;column-gap:24px">{subs}</ul>
         <p class="note">Outside this list? Ask — larger jobs travel further.</p>
       </div>
-      <div class="split-fig">{plate('meeting-room', 'Meeting room glazing', 'AG-AREA', sizes='(max-width:860px) 100vw, 50vw')}</div>
+      <div class="split-fig">{plate('office-glass', 'Meeting room glazing', 'AG-AREA', sizes='(max-width:860px) 100vw, 50vw')}</div>
     </div>
   </section>
   <section class="sect wrap">
@@ -709,7 +719,7 @@ def build_standards():
 <main id="main">
   {phero("Standards", "What AS 1288 means<br>for your <em>glazing.</em>",
          "Glass is selected against the opening it goes into — its size, its height above the floor, what is above it and what it has to resist. Not against a product brochure.",
-         [("/", "Home")], fig="bathroom-mirrors", ref="REFERENCE")}
+         [("/", "Home")], fig="mirror-tv", ref="REFERENCE")}
   <section class="sect wrap">
     <div class="split">
       <div class="prose reveal">
