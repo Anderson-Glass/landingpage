@@ -20,8 +20,8 @@
 <meta name="theme-color" content="#f1eee6">
 <link rel="preload" href="/assets/fonts/Fraunces-up-300_600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/IBMPlexMono-up-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/fonts2.css">
-<link rel="stylesheet" href="/assets/site2.css">
+<link rel="stylesheet" href="/assets/fonts2.css?v=0ed1f4b6">
+<link rel="stylesheet" href="/assets/site2.css?v=2cb9272d">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/json" href="/facts.json" title="Business facts (JSON)">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","HomeAndConstructionBusiness"],"@id":"https://andersonglass.com.au/#org","name":"Anderson Glass & Glazing","legalName":"Anderson Glass & Glazing Pty Ltd","url":"https://andersonglass.com.au/","telephone":"+61414441192","email":"ben@andersonglass.com.au","image":"https://andersonglass.com.au/images/hero-glass-1280.webp","logo":"https://andersonglass.com.au/assets/favicon.svg","priceRange":"Quote on inspection","address":{"@type":"PostalAddress","addressLocality":"Narre Warren East","addressRegion":"VIC","postalCode":"3804","addressCountry":"AU"},"areaServed":[{"@type":"City","name":"Melbourne"},{"@type":"AdministrativeArea","name":"South East Melbourne"},{"@type":"AdministrativeArea","name":"Inner East Melbourne"},{"@type":"AdministrativeArea","name":"Northern Melbourne"},{"@type":"AdministrativeArea","name":"Bayside Melbourne"},{"@type":"AdministrativeArea","name":"Gippsland"}],"knowsAbout":["Commercial glazing","Office partitions","Shower screens","Glass replacement","Mirror wardrobe doors","AS 1288","AS 2208"],"taxID":"24 202 344 169","vatID":"ABN 24 202 344 169"},{"@type":"WebSite","@id":"https://andersonglass.com.au/#website","url":"https://andersonglass.com.au/","name":"Anderson Glass & Glazing","publisher":{"@id":"https://andersonglass.com.au/#org"}},{"@type":"WebPage","@id":"https://andersonglass.com.au/quote/#page","url":"https://andersonglass.com.au/quote/","name":"Request a quote — Anderson Glass & Glazing, Melbourne","description":"Request a glazing quote in Melbourne: send a photo, the suburb and a rough size. Commercial glazing, partitions, shower screens, replacement glass and mirrors.","isPartOf":{"@id":"https://andersonglass.com.au/#website"},"about":{"@id":"https://andersonglass.com.au/#org"}}]}</script>
@@ -90,12 +90,13 @@
           <select id="sv2" name="service"><option>Commercial glazing</option><option>Office partitions</option><option>Shower screens</option><option>Glass replacement</option><option>Wardrobes &amp; mirrors</option><option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m2">Details</label><textarea id="m2" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
+        <div class="field"><label for="ph2">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph2" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
           <label for="cw">Company website</label>
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry <svg viewBox="0 0 16 16" width="12" height="12" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5.5M13 3v7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
-        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. We reply to the email address or phone number you give us; photos can follow by reply.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos (JPEG, PNG or WebP, 2 MB each); a photo of the opening is usually enough to quote from.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -138,6 +139,6 @@
   <button class="lightbox-close" aria-label="Close">✕</button>
   <figure><img alt=""><figcaption></figcaption></figure>
 </div>
-<script src="/assets/site2.js" defer></script>
+<script src="/assets/site2.js?v=f665deed" defer></script>
 </body>
 </html>

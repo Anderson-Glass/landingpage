@@ -101,6 +101,30 @@
         page: location.pathname
       };
 
+      // optional photos — limits mirror the worker so we fail fast and explain why
+      var LIMITS = { files: 4, perFile: 2 * 1024 * 1024, total: 8 * 1024 * 1024,
+                     types: ['image/jpeg', 'image/png', 'image/webp'] };
+      var picker = form.querySelector('input[name=photos]');
+      var files = picker && picker.files ? Array.prototype.slice.call(picker.files) : [];
+      var totalBytes = 0;
+
+      if (files.length > LIMITS.files) {
+        status.textContent = 'Up to ' + LIMITS.files + ' photos, please.'; return;
+      }
+      for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+        if (LIMITS.types.indexOf(f.type) === -1) {
+          status.textContent = 'Photos need to be JPEG, PNG or WebP.'; return;
+        }
+        if (f.size > LIMITS.perFile) {
+          status.textContent = '"' + f.name + '" is over 2 MB — try a smaller one.'; return;
+        }
+        totalBytes += f.size;
+      }
+      if (totalBytes > LIMITS.total) {
+        status.textContent = 'Those photos total more than 8 MB — send fewer, or send two batches.'; return;
+      }
+
       function mailto() {
         var subject = 'Quote request — ' + service + (suburb ? ' — ' + suburb : '');
         var body = [
@@ -122,11 +146,21 @@
       if (btn) { btn.disabled = true; }
       status.textContent = 'Sending…';
 
-      fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (res) {
+      var request;
+      if (files.length) {
+        var fd = new FormData();
+        Object.keys(payload).forEach(function (k) { fd.append(k, payload[k] == null ? '' : payload[k]); });
+        files.forEach(function (f) { fd.append('photos', f, f.name); });
+        request = { method: 'POST', body: fd }; // browser sets the multipart boundary
+      } else {
+        request = {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload)
+        };
+      }
+
+      fetch('/api/enquiry', request).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
           return { ok: res.ok, data: data };
         });
@@ -134,7 +168,8 @@
         if (btn) { btn.disabled = false; }
         if (r.ok && r.data && r.data.ok) {
           form.reset();
-          status.textContent = 'Thanks — that was sent. Ben will come back to you shortly.';
+          var n = (r.data && r.data.photos) || 0;
+          status.textContent = 'Thanks — that was sent' + (n ? ' with ' + n + (n === 1 ? ' photo' : ' photos') : '') + '. Ben will come back to you shortly.';
           return;
         }
         // not configured, provider error or network: never lose the lead

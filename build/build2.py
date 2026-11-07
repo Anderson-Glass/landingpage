@@ -4,7 +4,7 @@
 Content model is imported from build.py; this module owns the presentation layer.
 Run:  python3 build2.py   ->  ../site
 """
-import json, html, shutil
+import json, html, shutil, hashlib
 from pathlib import Path
 
 import build as C   # content model + helpers
@@ -21,6 +21,17 @@ GALLERY = C.GALLERY
 HOME_FAQ = C.HOME_FAQ
 
 ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5.5M13 3v7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>'
+
+
+def _asset_v(name):
+    """Short content hash for cache-busting. Assets are served immutable for a year."""
+    p = BASE / "assets" / name
+    return hashlib.sha1(p.read_bytes()).hexdigest()[:8] if p.exists() else "0"
+
+
+V_JS = _asset_v("site2.js")
+V_CSS = _asset_v("site2.css")
+V_FCSS = _asset_v("fonts2.css")
 
 # A second, different photo for each service page so the detail plate is never
 # a repeat of the hero image above it.
@@ -96,8 +107,8 @@ def head(title, desc, path, extra_json=None, og_img="hero-glass"):
 <meta name="theme-color" content="#f1eee6">
 <link rel="preload" href="/assets/fonts/Fraunces-up-300_600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/IBMPlexMono-up-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/fonts2.css">
-<link rel="stylesheet" href="/assets/site2.css">
+<link rel="stylesheet" href="/assets/fonts2.css?v={V_FCSS}">
+<link rel="stylesheet" href="/assets/site2.css?v={V_CSS}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/json" href="/facts.json" title="Business facts (JSON)">
 <script type="application/ld+json">{ld_json}</script>"""
@@ -187,7 +198,7 @@ def shell(title, desc, path, body, active="", extra_json=None, og_img="hero-glas
   <button class="lightbox-close" aria-label="Close">✕</button>
   <figure><img alt=""><figcaption></figcaption></figure>
 </div>
-<script src="/assets/site2.js" defer></script>
+<script src="/assets/site2.js?v={V_JS}" defer></script>
 </body>
 </html>"""
     write(path, page)
@@ -418,12 +429,13 @@ def build_home():
           <select id="sv" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m">Details</label><textarea id="m" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
+        <div class="field"><label for="ph">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
           <label for="cw">Company website</label>
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. We reply to the email address or phone number you give us; photos can follow by reply.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos (JPEG, PNG or WebP, 2 MB each); a photo of the opening is usually enough to quote from.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -849,12 +861,13 @@ def build_quote():
           <select id="sv2" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m2">Details</label><textarea id="m2" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
+        <div class="field"><label for="ph2">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph2" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
           <label for="cw">Company website</label>
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. We reply to the email address or phone number you give us; photos can follow by reply.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos (JPEG, PNG or WebP, 2 MB each); a photo of the opening is usually enough to quote from.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
