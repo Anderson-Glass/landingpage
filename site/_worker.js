@@ -8,11 +8,11 @@
 const MAX = { name: 120, phone: 40, email: 160, suburb: 120, service: 80, message: 4000 };
 
 // Upload contract — mirrored in assets/site2.js so the browser can fail fast.
+// Deliberately permissive: an iPhone photo is a photo whatever container it uses.
 const UPLOAD = {
   files: 4,
-  perFile: 2 * 1024 * 1024,   // 2 MiB each
-  total: 8 * 1024 * 1024,     // 8 MiB combined
-  types: ["image/jpeg", "image/png", "image/webp"],
+  perFile: 8 * 1024 * 1024,   // 8 MiB each
+  total: 20 * 1024 * 1024,    // 20 MiB combined
 };
 
 const RATE = { window: 10 * 60 * 1000, max: 5 };
@@ -33,12 +33,26 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-// Identify an image by its first bytes rather than trusting the declared type.
+// Identify the file by its first bytes rather than trusting the declared type.
+// Covers everything an iPhone, Android or desktop camera/browser realistically emits.
 function sniff(u8) {
+  const ascii = (from, to) => String.fromCharCode.apply(null, u8.subarray(from, to));
+
   if (u8.length > 3 && u8[0] === 0xff && u8[1] === 0xd8 && u8[2] === 0xff) return "image/jpeg";
   if (u8.length > 8 && u8[0] === 0x89 && u8[1] === 0x50 && u8[2] === 0x4e && u8[3] === 0x47) return "image/png";
-  if (u8.length > 12 && u8[0] === 0x52 && u8[1] === 0x49 && u8[2] === 0x46 && u8[3] === 0x46 &&
-      u8[8] === 0x57 && u8[9] === 0x45 && u8[10] === 0x42 && u8[11] === 0x50) return "image/webp";
+  if (u8.length > 12 && ascii(0, 4) === "RIFF" && ascii(8, 12) === "WEBP") return "image/webp";
+  if (u8.length > 6 && (ascii(0, 4) === "GIF8")) return "image/gif";
+  if (u8.length > 4 && (u8[0] === 0x49 && u8[1] === 0x49 && u8[2] === 0x2a) ||
+      (u8.length > 4 && u8[0] === 0x4d && u8[1] === 0x4d && u8[3] === 0x2a)) return "image/tiff";
+  if (u8.length > 2 && ascii(0, 2) === "BM") return "image/bmp";
+
+  // ISO-BMFF: HEIC/HEIF (iPhone), AVIF, and the sequence variants
+  if (u8.length > 12 && ascii(4, 8) === "ftyp") {
+    const brand = ascii(8, 12);
+    const heif = ["heic", "heix", "heim", "heis", "hevc", "hevx", "hevm", "hevs", "mif1", "msf1"];
+    if (heif.indexOf(brand) > -1) return "image/heic";
+    if (brand === "avif" || brand === "avis") return "image/avif";
+  }
   return null;
 }
 
@@ -52,7 +66,8 @@ function toBase64(u8) {
 }
 
 function safeName(name, mime) {
-  const ext = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" }[mime] || "jpg";
+  const ext = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/heic": "heic",
+                "image/avif": "avif", "image/gif": "gif", "image/tiff": "tif", "image/bmp": "bmp" }[mime] || "jpg";
   const base = String(name || "photo").replace(/\.[^.]+$/, "").replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 40);
   return (base || "photo") + "." + ext;
 }
@@ -135,8 +150,9 @@ async function handleEnquiry(request, env) {
 
     const buf = new Uint8Array(await f.arrayBuffer());
     const mime = sniff(buf);
-    if (!mime || !UPLOAD.types.includes(mime)) {
-      return json({ ok: false, error: "unsupported_photo_type" }, 415);
+    if (!mime) {
+      // Not a photo we can identify — name the file so the customer knows which one.
+      return json({ ok: false, error: "unsupported_photo_type", file: safeName(f.name, "image/jpeg") }, 415);
     }
     attachments.push({ filename: safeName(f.name, mime), content: toBase64(buf) });
   }

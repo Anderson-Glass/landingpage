@@ -429,13 +429,13 @@ def build_home():
           <select id="sv" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m">Details</label><textarea id="m" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
-        <div class="field"><label for="ph">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
+        <div class="field"><label for="ph">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph" name="photos" type="file" accept="image/*,.heic,.heif,.HEIC,.HEIF" multiple></div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
           <label for="cw">Company website</label>
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos (JPEG, PNG or WebP, 2 MB each); a photo of the opening is usually enough to quote from.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos, straight off your phone — any format, no resizing needed.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -861,13 +861,13 @@ def build_quote():
           <select id="sv2" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m2">Details</label><textarea id="m2" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
-        <div class="field"><label for="ph2">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph2" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
+        <div class="field"><label for="ph2">Photos <span style="text-transform:none;letter-spacing:0;opacity:.7">(optional — up to 4)</span></label><input id="ph2" name="photos" type="file" accept="image/*,.heic,.heif,.HEIC,.HEIF" multiple></div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
           <label for="cw">Company website</label>
           <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
-        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos (JPEG, PNG or WebP, 2 MB each); a photo of the opening is usually enough to quote from.</p>
+        <p class="form-note">Goes straight to our inbox — no third-party marketing platform, no tracking. Add up to four photos, straight off your phone — any format, no resizing needed.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>

@@ -85,7 +85,7 @@
   /* enquiry -> API, with mail-composer fallback */
   var form = document.querySelector('[data-enquiry]');
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       var status = form.querySelector('.form-status');
       var btn = form.querySelector('button[type=submit]');
@@ -101,28 +101,56 @@
         page: location.pathname
       };
 
-      // optional photos — limits mirror the worker so we fail fast and explain why
-      var LIMITS = { files: 4, perFile: 2 * 1024 * 1024, total: 8 * 1024 * 1024,
-                     types: ['image/jpeg', 'image/png', 'image/webp'] };
+      // optional photos — limits mirror the worker so we fail fast and explain why.
+      // Deliberately permissive: an iPhone photo is a photo whatever container it uses.
+      var LIMITS = { files: 4, perFile: 8 * 1024 * 1024, total: 20 * 1024 * 1024 };
       var picker = form.querySelector('input[name=photos]');
       var files = picker && picker.files ? Array.prototype.slice.call(picker.files) : [];
-      var totalBytes = 0;
 
       if (files.length > LIMITS.files) {
         status.textContent = 'Up to ' + LIMITS.files + ' photos, please.'; return;
       }
+
+      // Normalise everything the browser can decode into a JPEG: HEIC from iPhones,
+      // PNG, WebP, GIF, TIFF. If the browser cannot decode it (Chrome + HEIC), the
+      // original is sent unchanged and the server accepts it.
+      async function normalise(f) {
+        if (!window.createImageBitmap) return f;
+        try {
+          var bmp = await createImageBitmap(f);
+          var scale = Math.min(1, 2400 / Math.max(bmp.width, bmp.height));
+          var w = Math.max(1, Math.round(bmp.width * scale));
+          var h = Math.max(1, Math.round(bmp.height * scale));
+          var c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          c.getContext('2d').drawImage(bmp, 0, 0, w, h);
+          var blob = await new Promise(function (res) { c.toBlob(res, 'image/jpeg', 0.85); });
+          if (!blob) return f;
+          return new File([blob], f.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
+        } catch (err) {
+          return f;
+        }
+      }
+
+      if (files.length) {
+        status.textContent = 'Preparing photos…';
+        var out = [];
+        for (var j = 0; j < files.length; j++) {
+          out.push(await normalise(files[j]));
+        }
+        files = out;
+      }
+
+      var totalBytes = 0;
       for (var i = 0; i < files.length; i++) {
         var f = files[i];
-        if (LIMITS.types.indexOf(f.type) === -1) {
-          status.textContent = 'Photos need to be JPEG, PNG or WebP.'; return;
-        }
         if (f.size > LIMITS.perFile) {
-          status.textContent = '"' + f.name + '" is over 2 MB — try a smaller one.'; return;
+          status.textContent = '"' + f.name + '" is too large — try a smaller photo.'; return;
         }
         totalBytes += f.size;
       }
       if (totalBytes > LIMITS.total) {
-        status.textContent = 'Those photos total more than 8 MB — send fewer, or send two batches.'; return;
+        status.textContent = 'Those photos are too big together — send fewer, or send two batches.'; return;
       }
 
       function mailto() {
