@@ -4,7 +4,7 @@ import json, os, shutil, html
 from pathlib import Path
 
 BASE = Path(__file__).parent
-OUT = BASE.parent / "agsite"
+OUT = BASE.parent / "site"
 SITE = "https://andersonglass.com.au"
 
 ORG = {
