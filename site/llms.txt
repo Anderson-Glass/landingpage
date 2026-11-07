@@ -5,7 +5,7 @@
 ## Business
 - Legal name: Anderson Glass & Glazing Pty Ltd
 - ABN 24 202 344 169 · ACN 169 467 216
-- Workshop: 794 Belgrave Hallam Road, Narre Warren East VIC 3804
+- Workshop: Narre Warren East, VIC
 - Phone: +61414441192 · Email: ben@andersonglass.com.au
 - Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
 - Machine-readable facts: https://andersonglass.com.au/facts.json

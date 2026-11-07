@@ -50,7 +50,7 @@ def head(title, desc, path, extra_json=None, og_img="hero-corridor"):
                 "image": SITE + "/images/hero-corridor-1280.webp",
                 "logo": SITE + "/assets/favicon.svg",
                 "priceRange": "Quote on inspection",
-                "address": {"@type": "PostalAddress", "streetAddress": ORG["street"],
+                "address": {"@type": "PostalAddress",
                             "addressLocality": ORG["suburb"], "addressRegion": ORG["state"],
                             "postalCode": ORG["postcode"], "addressCountry": "AU"},
                 "areaServed": [{"@type": "City", "name": "Melbourne"}] +
@@ -152,7 +152,7 @@ def footer():
     <div class="tb-strip">
       <div><b>Business</b><span>{ORG['legal']}</span></div>
       <div><b>ABN / ACN</b><span>{ORG['abn']} / {ORG['acn']}</span></div>
-      <div><b>Workshop</b><span>{ORG['street']}, {ORG['suburb']} {ORG['postcode']}</span></div>
+      <div><b>Based in</b><span>{ORG['location']}</span></div>
       <div><b>Sheet</b><span>© <span data-year>2026</span></span></div>
       <div><b>Rev</b><span>2.0</span></div>
     </div>
@@ -392,7 +392,7 @@ def build_home():
         <div class="contact">
           <a href="tel:{ORG['tel']}"><strong>Phone</strong><span>{ORG['phone']}</span></a>
           <a href="mailto:{ORG['email']}"><strong>Email</strong><span>{ORG['email']}</span></a>
-          <div><strong>Workshop</strong><span>{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}</span></div>
+          <div><strong>Based in</strong><span>{ORG['location']}</span></div>
         </div>
       </div>
       <form class="form" data-enquiry novalidate>
@@ -762,7 +762,7 @@ def build_facts():
     rows = [
         ("Registered name", ORG["legal"]), ("ABN", ORG["abn"]), ("ACN", ORG["acn"]),
         ("Phone", ORG["phone"]), ("Email", ORG["email"]),
-        ("Workshop", f"{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}"),
+        ("Based in", f"{ORG['location']}"),
         ("Service area", "Melbourne metro; Gippsland by schedule"),
         ("Trades", "Commercial glazing · office partitions · shower screens · glass replacement · mirrors"),
         ("Supply model", "Supply and install; measure and quote by appointment"),
@@ -816,7 +816,7 @@ def build_quote():
         <div class="contact">
           <a href="tel:{ORG['tel']}"><strong>Phone</strong><span>{ORG['phone']} — fastest for anything broken</span></a>
           <a href="mailto:{ORG['email']}"><strong>Email</strong><span>{ORG['email']}</span></a>
-          <div><strong>Workshop</strong><span>{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}</span></div>
+          <div><strong>Based in</strong><span>{ORG['location']}</span></div>
         </div>
         <h3 style="margin:32px 0 14px">What helps most</h3>
         <ul style="display:grid;gap:10px">
@@ -900,7 +900,7 @@ def build_meta():
         "name": ORG["name"], "legalName": ORG["legal"], "url": SITE + "/",
         "telephone": ORG["tel"], "email": ORG["email"],
         "identifiers": {"ABN": ORG["abn"], "ACN": ORG["acn"]},
-        "address": {"streetAddress": ORG["street"], "addressLocality": ORG["suburb"],
+        "address": {"addressLocality": ORG["suburb"],
                     "addressRegion": ORG["state"], "postalCode": ORG["postcode"], "addressCountry": "AU"},
         "areaServed": ["Melbourne", "Gippsland"] + [a["name"] for a in AREAS],
         "services": [{"name": html.unescape(s["title"]), "summary": html.unescape(s["short"]),
@@ -926,7 +926,7 @@ def build_meta():
 ## Business
 - Legal name: {ORG['legal']}
 - ABN {ORG['abn']} · ACN {ORG['acn']}
-- Workshop: {ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}
+- Workshop: {ORG['location']}
 - Phone: {ORG['tel']} · Email: {ORG['email']}
 - Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
 - Machine-readable facts: {SITE}/facts.json

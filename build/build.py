@@ -15,10 +15,11 @@ ORG = {
     "phone": "0414 441 192",
     "tel": "+61414441192",
     "email": "ben@andersonglass.com.au",
-    "street": "794 Belgrave Hallam Road",
+    "street": "",
     "suburb": "Narre Warren East",
     "state": "VIC",
     "postcode": "3804",
+    "location": "Narre Warren East, VIC",
     "founded": 2014,
 }
 
@@ -341,7 +342,6 @@ def head(title, desc, path, extra_json=None, og_img="hero-corridor"):
                 "priceRange": "Quote on inspection",
                 "address": {
                     "@type": "PostalAddress",
-                    "streetAddress": ORG["street"],
                     "addressLocality": ORG["suburb"],
                     "addressRegion": ORG["state"],
                     "postalCode": ORG["postcode"],
@@ -468,7 +468,7 @@ def footer():
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> {ORG['legal']} · ABN {ORG['abn']} · ACN {ORG['acn']}</span>
-      <span>{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}</span>
+      <span>{ORG['location']}</span>
     </div>
   </div>
 </footer>"""
@@ -733,7 +733,7 @@ def build_home():
         <div class="contact-list">
           <a href="tel:{ORG['tel']}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0-.6.4-1 1-1h3l2 5-2 1a12 12 0 006 6l1-2 5 2v3c0 .6-.4 1-1 1A16 16 0 014 5z" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Phone</strong>{ORG['phone']}</span></a>
           <a href="mailto:{ORG['email']}"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Email</strong>{ORG['email']}</span></a>
-          <div><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Workshop</strong>{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Based in</strong>{ORG['location']}</span></div>
         </div>
       </div>
       <form class="form reveal" data-enquiry data-delay="1" novalidate>
@@ -1093,7 +1093,7 @@ def build_facts():
         ("ACN", ORG["acn"]),
         ("Phone", ORG["phone"]),
         ("Email", ORG["email"]),
-        ("Workshop", f"{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}"),
+        ("Based in", f"{ORG['location']}"),
         ("Service area", "Melbourne metro; Gippsland by schedule"),
         ("Trades", "Commercial glazing · office partitions · shower screens · glass replacement · mirrors"),
         ("Supply model", "Supply and install; measure and quote by appointment"),
@@ -1137,7 +1137,7 @@ def build_quote():
         <div class="contact-list">
           <a href="tel:{ORG['tel']}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0-.6.4-1 1-1h3l2 5-2 1a12 12 0 006 6l1-2 5 2v3c0 .6-.4 1-1 1A16 16 0 014 5z" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Phone — fastest for anything broken</strong>{ORG['phone']}</span></a>
           <a href="mailto:{ORG['email']}"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Email</strong>{ORG['email']}</span></a>
-          <div><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Workshop</strong>{ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg><span><strong>Based in</strong>{ORG['location']}</span></div>
         </div>
         <h2 style="margin-top:44px;font-size:clamp(1.5rem,2.4vw,2rem)">What helps most</h2>
         <ul style="display:grid;gap:12px;margin-top:18px">
@@ -1263,7 +1263,7 @@ Sitemap: {SITE}/sitemap.xml
 ## Business
 - Legal name: {ORG['legal']}
 - ABN {ORG['abn']} · ACN {ORG['acn']}
-- Workshop: {ORG['street']}, {ORG['suburb']} {ORG['state']} {ORG['postcode']}
+- Workshop: {ORG['location']}
 - Phone: {ORG['phone']}
 - Email: {ORG['email']}
 - Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
