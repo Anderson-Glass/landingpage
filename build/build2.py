@@ -962,7 +962,7 @@ AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 
   Strict-Transport-Security: max-age=31536000
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; form-action 'self' mailto:; base-uri 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; form-action 'self' mailto:; base-uri 'self'; frame-ancestors 'none'
   Cross-Origin-Opener-Policy: same-origin
 
 /assets/*
