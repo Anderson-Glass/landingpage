@@ -1,0 +1,183 @@
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Organization",
+    "HomeAndConstructionBusiness"
+  ],
+  "name": "Anderson Glass & Glazing",
+  "legalName": "Anderson Glass & Glazing Pty Ltd",
+  "url": "https://andersonglass.com.au/",
+  "telephone": "+61414441192",
+  "email": "ben@andersonglass.com.au",
+  "identifiers": {
+    "ABN": "24 202 344 169",
+    "ACN": "169 467 216"
+  },
+  "address": {
+    "streetAddress": "794 Belgrave Hallam Road",
+    "addressLocality": "Narre Warren East",
+    "addressRegion": "VIC",
+    "postalCode": "3804",
+    "addressCountry": "AU"
+  },
+  "areaServed": [
+    "Melbourne",
+    "Gippsland",
+    "South East Melbourne",
+    "Inner East Melbourne",
+    "Northern Melbourne",
+    "Bayside Melbourne",
+    "Gippsland"
+  ],
+  "services": [
+    {
+      "name": "Commercial glazing",
+      "summary": "Shopfronts, entries and full-height glass for commercial fitouts.",
+      "url": "https://andersonglass.com.au/services/commercial-glazing/",
+      "includes": [
+        "Shopfront framing and glass replacement",
+        "Manual and automatic glass entry doors",
+        "Full-height and over-height partition glazing",
+        "Glass balustrades and pool fencing",
+        "Mirrors, splashbacks and wall linings",
+        "Make-safe and same-week glass replacement"
+      ],
+      "faq": [
+        {
+          "q": "Do you work on occupied commercial sites?",
+          "a": "Yes. Most of our work is in operating offices, shops and warehouses. Glass is measured outside working hours where needed, and installations are staged around your trading or staff hours."
+        },
+        {
+          "q": "Can you match existing shopfront framing?",
+          "a": "Usually. Send a photo and a couple of dimensions when you enquire and we can tell you before anyone visits whether the existing frame takes new glass or whether the frame needs replacing too."
+        },
+        {
+          "q": "Do you provide glazing certificates?",
+          "a": "Yes — the certificate identifies the glass, the make-up, the standard it was selected under (AS 1288) and the installer. It is issued for the job, not copied from a template."
+        },
+        {
+          "q": "Who measures?",
+          "a": "The person who quotes measures. That is deliberate: a quote built on someone else's measurements is a quote for a different job."
+        }
+      ]
+    },
+    {
+      "name": "Office partitions",
+      "summary": "Framed, frameless and demountable glass partition systems.",
+      "url": "https://andersonglass.com.au/services/office-partitions/",
+      "includes": [
+        "Framed aluminium partition systems",
+        "Frameless butt-jointed glass walls",
+        "Demountable and relocatable partitions",
+        "Glass and timber doors, patch fittings, closers",
+        "Manifestation and privacy film to AS 1428 sight lines",
+        "Acoustic and double-glazed options"
+      ],
+      "faq": [
+        {
+          "q": "Can partitions be added while we keep working?",
+          "a": "Usually yes. Partition glazing is staged in sections, and the noisiest work — cutting, drilling, silicone — is scheduled before hours or in a defined window."
+        },
+        {
+          "q": "Do I need consent or a permit?",
+          "a": "That depends on the building and whether the work touches base build services, fire systems or egress. We will tell you when a partition run is likely to need building approval before we quote it."
+        },
+        {
+          "q": "Can I reuse partitions when I move?",
+          "a": "If they were built demountable. A frameless system is generally fixed to the tenancy — worth deciding at the start."
+        }
+      ]
+    },
+    {
+      "name": "Shower screens",
+      "summary": "Frameless and semi-frameless screens, measured and installed.",
+      "url": "https://andersonglass.com.au/services/shower-screens/",
+      "includes": [
+        "Frameless 10mm screens and doors",
+        "Semi-frameless and framed screens",
+        "Pivot, hinged and sliding configurations",
+        "Return panels and fixed panels",
+        "Mirrors and bathroom splashbacks",
+        "Replacement glass for existing screens"
+      ],
+      "faq": [
+        {
+          "q": "Do you measure before or after tiling?",
+          "a": "After. Screen dimensions need the finished tile face and floor fall, so measuring happens once tiling and waterproofing are complete."
+        },
+        {
+          "q": "Can you replace just the glass?",
+          "a": "Often — if the hinges and brackets are reusable and the opening has not moved. Send a photo of the hardware and the screen and we will tell you."
+        },
+        {
+          "q": "How long between measure and install?",
+          "a": "Typically one to two weeks, because toughened glass has to be cut, drilled and heat-treated to your exact dimensions. Confirm the date at quote."
+        }
+      ]
+    },
+    {
+      "name": "Glass replacement",
+      "summary": "Broken windows, doors and shopfronts — make safe and replace.",
+      "url": "https://andersonglass.com.au/services/glass-replacement/",
+      "includes": [
+        "Emergency make-safe and board-up",
+        "Window and door glass replacement",
+        "Shopfront and entry glass",
+        "Mirror and splashback replacement",
+        "Upgrade to safety glass where required",
+        "Insurance documentation and photos"
+      ],
+      "faq": [
+        {
+          "q": "Can you make it safe today?",
+          "a": "Most days, yes — board-up or removal of loose glass can usually be arranged the same day across Melbourne metro. Call rather than email for anything unsafe."
+        },
+        {
+          "q": "Will insurance cover it?",
+          "a": "Depends on your policy. We photograph the damage, note the make-up replaced and provide an invoice you can submit."
+        },
+        {
+          "q": "The old glass was thinner — do I have to upgrade?",
+          "a": "If the location now requires safety glass, yes. A glazier replacing glass in a regulated location is bound by AS 1288 regardless of what was there before."
+        }
+      ]
+    },
+    {
+      "name": "Wardrobes & mirrors",
+      "summary": "Mirror wardrobe doors, splashbacks and wall mirrors.",
+      "url": "https://andersonglass.com.au/services/wardrobes-and-mirrors/",
+      "includes": [
+        "Sliding mirror wardrobe doors",
+        "Hinged mirror doors",
+        "Glass splashbacks",
+        "Gym and wall mirrors",
+        "Replacement mirror for existing tracks",
+        "Safety-backed mirror where required"
+      ],
+      "faq": [
+        {
+          "q": "Can you replace mirror only, keeping the tracks?",
+          "a": "Often yes, if the track is sound and the door size is standard. Photograph the track and the top roller and we can advise."
+        },
+        {
+          "q": "Do mirrors need safety backing?",
+          "a": "Where they could be struck or where Council or a spec calls for it. In gyms and bathrooms we default to safety-backed."
+        }
+      ]
+    }
+  ],
+  "standards": [
+    "AS 1288",
+    "AS 2208",
+    "AS 4666",
+    "AS 1178",
+    "AS 1428.1"
+  ],
+  "quoting": {
+    "model": "Measure and quote after site inspection",
+    "pricesPublished": false,
+    "leadTimes": "Confirmed at quote",
+    "certificates": "Issued where required, recording glass supplied and standard applied"
+  },
+  "updated": "2026-11-07"
+}

@@ -6,9 +6,9 @@
 - Legal name: Anderson Glass & Glazing Pty Ltd
 - ABN 24 202 344 169 · ACN 169 467 216
 - Workshop: 794 Belgrave Hallam Road, Narre Warren East VIC 3804
-- Phone: 0414 441 192
-- Email: ben@andersonglass.com.au
+- Phone: +61414441192 · Email: ben@andersonglass.com.au
 - Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
+- Machine-readable facts: https://andersonglass.com.au/facts.json
 
 ## Services
 - Commercial glazing: Shopfronts, entries and full-height glass for commercial fitouts. (https://andersonglass.com.au/services/commercial-glazing/)
@@ -18,16 +18,13 @@
 - Wardrobes & mirrors: Mirror wardrobe doors, splashbacks and wall mirrors. (https://andersonglass.com.au/services/wardrobes-and-mirrors/)
 
 ## How quoting works
-- Measure and quote free across Melbourne metro; attendee is the installing glazier.
-- No published prices: glass make-up and thickness depend on the measured panel, its height above the floor and the applicable loads (AS 1288).
+- Measure and quote free across Melbourne metro; the installing glazier attends.
+- No published prices: make-up and thickness depend on the measured panel, height above floor and loads (AS 1288).
 - Lead times confirmed at quote, not published.
-- Glazing certificates issued where the job requires one (glass supplied, make-up, standard, installer).
+- Glazing certificates issued where required.
 
 ## Standards
-- AS 1288 (glass in buildings — selection and installation)
-- AS 2208 (safety glazing materials)
-- AS 4666 (insulating glass units)
-- AS 1428.1 (visibility of glazed doors/walls)
+AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 (balustrades), AS 1428.1 (visibility).
 
 ## Pages
 - https://andersonglass.com.au/

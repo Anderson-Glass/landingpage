@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 # AI / answer engines — explicitly welcome
+
 User-agent: GPTBot
 Allow: /
 
@@ -20,6 +21,9 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
@@ -33,6 +37,9 @@ User-agent: CCBot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 Sitemap: https://andersonglass.com.au/sitemap.xml

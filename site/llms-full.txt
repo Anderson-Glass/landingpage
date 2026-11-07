@@ -6,9 +6,9 @@
 - Legal name: Anderson Glass & Glazing Pty Ltd
 - ABN 24 202 344 169 · ACN 169 467 216
 - Workshop: 794 Belgrave Hallam Road, Narre Warren East VIC 3804
-- Phone: 0414 441 192
-- Email: ben@andersonglass.com.au
+- Phone: +61414441192 · Email: ben@andersonglass.com.au
 - Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
+- Machine-readable facts: https://andersonglass.com.au/facts.json
 
 ## Services
 - Commercial glazing: Shopfronts, entries and full-height glass for commercial fitouts. (https://andersonglass.com.au/services/commercial-glazing/)
@@ -18,16 +18,13 @@
 - Wardrobes & mirrors: Mirror wardrobe doors, splashbacks and wall mirrors. (https://andersonglass.com.au/services/wardrobes-and-mirrors/)
 
 ## How quoting works
-- Measure and quote free across Melbourne metro; attendee is the installing glazier.
-- No published prices: glass make-up and thickness depend on the measured panel, its height above the floor and the applicable loads (AS 1288).
+- Measure and quote free across Melbourne metro; the installing glazier attends.
+- No published prices: make-up and thickness depend on the measured panel, height above floor and loads (AS 1288).
 - Lead times confirmed at quote, not published.
-- Glazing certificates issued where the job requires one (glass supplied, make-up, standard, installer).
+- Glazing certificates issued where required.
 
 ## Standards
-- AS 1288 (glass in buildings — selection and installation)
-- AS 2208 (safety glazing materials)
-- AS 4666 (insulating glass units)
-- AS 1428.1 (visibility of glazed doors/walls)
+AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 (balustrades), AS 1428.1 (visibility).
 
 ## Pages
 - https://andersonglass.com.au/
@@ -56,6 +53,7 @@
 
 ## Commercial glazing
 Anderson Glass & Glazing supplies and installs commercial glazing across Melbourne — shopfronts, automatic and manual glass entries, full-height partition glazing, mirrors and glass balustrades. Work is measured on site, fabricated to those measurements and installed by the same glazier who quoted it.
+
 - Shopfront framing and glass replacement
 - Manual and automatic glass entry doors
 - Full-height and over-height partition glazing
@@ -63,8 +61,18 @@ Anderson Glass & Glazing supplies and installs commercial glazing across Melbour
 - Mirrors, splashbacks and wall linings
 - Make-safe and same-week glass replacement
 
+Q: Do you work on occupied commercial sites?
+A: Yes. Most of our work is in operating offices, shops and warehouses. Glass is measured outside working hours where needed, and installations are staged around your trading or staff hours.
+Q: Can you match existing shopfront framing?
+A: Usually. Send a photo and a couple of dimensions when you enquire and we can tell you before anyone visits whether the existing frame takes new glass or whether the frame needs replacing too.
+Q: Do you provide glazing certificates?
+A: Yes — the certificate identifies the glass, the make-up, the standard it was selected under (AS 1288) and the installer. It is issued for the job, not copied from a template.
+Q: Who measures?
+A: The person who quotes measures. That is deliberate: a quote built on someone else's measurements is a quote for a different job.
+
 ## Office partitions
 Office partition glazing turns floor area into rooms without losing light. Anderson Glass installs framed aluminium, frameless and demountable glass partition systems for Melbourne offices and warehouses — measured to the tenancy, with doors, manifestation and acoustic detailing resolved before fabrication.
+
 - Framed aluminium partition systems
 - Frameless butt-jointed glass walls
 - Demountable and relocatable partitions
@@ -72,8 +80,16 @@ Office partition glazing turns floor area into rooms without losing light. Ander
 - Manifestation and privacy film to AS 1428 sight lines
 - Acoustic and double-glazed options
 
+Q: Can partitions be added while we keep working?
+A: Usually yes. Partition glazing is staged in sections, and the noisiest work — cutting, drilling, silicone — is scheduled before hours or in a defined window.
+Q: Do I need consent or a permit?
+A: That depends on the building and whether the work touches base build services, fire systems or egress. We will tell you when a partition run is likely to need building approval before we quote it.
+Q: Can I reuse partitions when I move?
+A: If they were built demountable. A frameless system is generally fixed to the tenancy — worth deciding at the start.
+
 ## Shower screens
 A frameless shower screen is 10mm toughened safety glass, cut and drilled to your opening and fixed with hinges and brackets rather than a frame. Anderson Glass measures the actual opening — walls are never square — fabricates to those millimetres, and installs with the door swing and screen heights set before the glass is tempered.
+
 - Frameless 10mm screens and doors
 - Semi-frameless and framed screens
 - Pivot, hinged and sliding configurations
@@ -81,8 +97,16 @@ A frameless shower screen is 10mm toughened safety glass, cut and drilled to you
 - Mirrors and bathroom splashbacks
 - Replacement glass for existing screens
 
+Q: Do you measure before or after tiling?
+A: After. Screen dimensions need the finished tile face and floor fall, so measuring happens once tiling and waterproofing are complete.
+Q: Can you replace just the glass?
+A: Often — if the hinges and brackets are reusable and the opening has not moved. Send a photo of the hardware and the screen and we will tell you.
+Q: How long between measure and install?
+A: Typically one to two weeks, because toughened glass has to be cut, drilled and heat-treated to your exact dimensions. Confirm the date at quote.
+
 ## Glass replacement
 Glass replacement covers broken or cracked windows, doors, shopfronts and mirrors. Anderson Glass makes the opening safe first, measures the frame as it actually is, and replaces the pane in the correct make-up and thickness for that location under AS 1288 — not simply the thickness the old pane happened to be.
+
 - Emergency make-safe and board-up
 - Window and door glass replacement
 - Shopfront and entry glass
@@ -90,11 +114,24 @@ Glass replacement covers broken or cracked windows, doors, shopfronts and mirror
 - Upgrade to safety glass where required
 - Insurance documentation and photos
 
+Q: Can you make it safe today?
+A: Most days, yes — board-up or removal of loose glass can usually be arranged the same day across Melbourne metro. Call rather than email for anything unsafe.
+Q: Will insurance cover it?
+A: Depends on your policy. We photograph the damage, note the make-up replaced and provide an invoice you can submit.
+Q: The old glass was thinner — do I have to upgrade?
+A: If the location now requires safety glass, yes. A glazier replacing glass in a regulated location is bound by AS 1288 regardless of what was there before.
+
 ## Wardrobes & mirrors
 Anderson Glass supplies and installs mirror wardrobe doors, glass splashbacks and wall mirrors — measured to the opening, cut with polished or bevelled edges, and fixed with hardware rated for the door weight. Sliding mirror doors are the usual choice where swing space is tight.
+
 - Sliding mirror wardrobe doors
 - Hinged mirror doors
 - Glass splashbacks
 - Gym and wall mirrors
 - Replacement mirror for existing tracks
 - Safety-backed mirror where required
+
+Q: Can you replace mirror only, keeping the tracks?
+A: Often yes, if the track is sound and the door size is standard. Photograph the track and the top roller and we can advise.
+Q: Do mirrors need safety backing?
+A: Where they could be struck or where Council or a spec calls for it. In gyms and bathrooms we default to safety-backed.
