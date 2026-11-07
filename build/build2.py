@@ -408,6 +408,10 @@ def build_home():
           <select id="sv" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m">Details</label><textarea id="m" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label for="cw">Company website</label>
+          <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
         <p class="form-note">Opens your email app pre-filled — no third-party form service, nothing stored on this site. Attach photos there.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
@@ -835,6 +839,10 @@ def build_quote():
           <select id="sv2" name="service">{''.join(f'<option>{s["title"]}</option>' for s in SERVICES)}<option>Mirrors / splashback</option><option>Something else</option></select>
         </div>
         <div class="field"><label for="m2">Details</label><textarea id="m2" name="message" placeholder="Rough width and height, new build or replacement, anything the photos do not show."></textarea></div>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label for="cw">Company website</label>
+          <input id="cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <button class="btn btn--lg" type="submit">Send enquiry {ARROW}</button>
         <p class="form-note">Opens your email app pre-filled — no third-party form service, nothing stored on this site. Attach photos there.</p>
         <p class="form-status" role="status" aria-live="polite"></p>
@@ -973,6 +981,9 @@ AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 
 
 
 def build_assets():
+    worker = BASE / "_worker.js"
+    if worker.exists():
+        shutil.copy2(worker, OUT / "_worker.js")
     for sub in ("assets", "images"):
         src = BASE / sub
         dst = OUT / sub

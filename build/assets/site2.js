@@ -82,30 +82,69 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
   }
 
-  /* enquiry -> mail composer */
+  /* enquiry -> API, with mail-composer fallback */
   var form = document.querySelector('[data-enquiry]');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var status = form.querySelector('.form-status');
+      var btn = form.querySelector('button[type=submit]');
       var v = function (n) { return (form.elements[n] && form.elements[n].value || '').trim(); };
-      var name = v('name'), phone = v('phone'), email = v('email'), suburb = v('suburb'), service = v('service'), message = v('message');
+      var name = v('name'), phone = v('phone'), email = v('email'), suburb = v('suburb'),
+          service = v('service'), message = v('message'), trap = v('company_website');
+
       if (!name || !phone) { status.textContent = 'Add your name and a phone number.'; return; }
-      var subject = 'Quote request — ' + service + (suburb ? ' — ' + suburb : '');
-      var body = [
-        'Name: ' + name, 'Phone: ' + phone,
-        email ? 'Email: ' + email : '', suburb ? 'Suburb: ' + suburb : '',
-        'Service: ' + service, '', message, '', '— sent from andersonglass.com.au'
-      ].filter(Boolean).join('\n');
-      status.textContent = 'Opening your email app with the details filled in…';
-      window.location.href = 'mailto:ben@andersonglass.com.au?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      setTimeout(function () {
-        status.textContent = 'Nothing happened? Call 0414 441 192 or email ben@andersonglass.com.au.';
-        var tel = document.createElement('a');
-        tel.href = 'tel:+61414441192'; tel.textContent = ' Tap to call.';
-        tel.style.color = 'inherit'; tel.style.textDecoration = 'underline';
-        status.appendChild(tel);
-      }, 1800);
+
+      var payload = {
+        name: name, phone: phone, email: email, suburb: suburb,
+        service: service, message: message, company_website: trap,
+        page: location.pathname
+      };
+
+      function mailto() {
+        var subject = 'Quote request — ' + service + (suburb ? ' — ' + suburb : '');
+        var body = [
+          'Name: ' + name, 'Phone: ' + phone,
+          email ? 'Email: ' + email : '', suburb ? 'Suburb: ' + suburb : '',
+          'Service: ' + service, '', message, '', '— sent from andersonglass.com.au'
+        ].filter(Boolean).join('\n');
+        window.location.href = 'mailto:ben@andersonglass.com.au?subject=' +
+          encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        setTimeout(function () {
+          status.textContent = 'Nothing happened? Call 0414 441 192 or email ben@andersonglass.com.au.';
+          var tel = document.createElement('a');
+          tel.href = 'tel:+61414441192'; tel.textContent = ' Tap to call.';
+          tel.style.color = 'inherit'; tel.style.textDecoration = 'underline';
+          status.appendChild(tel);
+        }, 1800);
+      }
+
+      if (btn) { btn.disabled = true; }
+      status.textContent = 'Sending…';
+
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      }).then(function (r) {
+        if (btn) { btn.disabled = false; }
+        if (r.ok && r.data && r.data.ok) {
+          form.reset();
+          status.textContent = 'Thanks — that's been sent. Ben will come back to you shortly.';
+          return;
+        }
+        // not configured, provider error or network: never lose the lead
+        status.textContent = 'Opening your email app with the details filled in…';
+        mailto();
+      }).catch(function () {
+        if (btn) { btn.disabled = false; }
+        status.textContent = 'Opening your email app with the details filled in…';
+        mailto();
+      });
     });
   }
 
