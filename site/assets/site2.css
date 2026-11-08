@@ -348,7 +348,7 @@ p { text-wrap: pretty; }
 /* ---------------- footer title block ---------------- */
 .footer { border-top: 1.5px solid var(--ink); background: var(--paper); }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; border-left: 1.5px solid var(--ink); border-right: 1.5px solid var(--ink); }
-.footer-grid > div { padding: clamp(18px, 2.4vw, 28px); border-right: 1px solid var(--rule); }
+.footer-grid > div { padding: clamp(18px, 2.4vw, 28px); border-right: 1px solid var(--rule); min-width: 0; overflow-wrap: anywhere; }
 .footer-grid > div:last-child { border-right: 0; }
 .footer h4 { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; font-weight: 400; }
 .footer ul { display: grid; gap: 8px; }
@@ -389,3 +389,11 @@ p { text-wrap: pretty; }
 
 .note { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .06em; color: var(--muted); max-width: 78ch; line-height: 1.7; }
 .note a { color: var(--orange); border-bottom: 1px solid currentColor; }
+
+/* Footer: two columns still overflowed at 390px because the grid tracks kept
+   their min-content width. Single column under 560px fixes the 4px side-scroll. */
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > div { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .footer-grid > div:last-child { border-bottom: 0; }
+}

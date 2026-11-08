@@ -26,6 +26,14 @@
 ## Standards
 AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 (balustrades), AS 1428.1 (visibility).
 
+## Guides (long-form answers)
+- How glass thickness is chosen: Why the same size opening can need different glass in two different places — and what actually decides it. (https://andersonglass.com.au/guides/how-glass-thickness-is-chosen/)
+- Why we measure your shower after tiling: The single biggest cause of leaking shower screens is a screen made from the drawing. (https://andersonglass.com.au/guides/why-we-measure-after-tiling/)
+- Toughened or laminated?: Two safety glasses that behave completely differently when they break. (https://andersonglass.com.au/guides/toughened-or-laminated/)
+- Framed, frameless or demountable: Three ways to divide a floor, and the questions that decide between them. (https://andersonglass.com.au/guides/choosing-office-partitions/)
+- A broken window: the first hour: What to do before anyone arrives, and what not to do. (https://andersonglass.com.au/guides/broken-window-first-hour/)
+- Glass splashback or tiles?: An honest comparison, including when tiles are the better answer. (https://andersonglass.com.au/guides/splashback-or-tiles/)
+
 ## Pages
 - https://andersonglass.com.au/
 - https://andersonglass.com.au/services/
@@ -34,6 +42,8 @@ AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 
 - https://andersonglass.com.au/standards/
 - https://andersonglass.com.au/facts/
 - https://andersonglass.com.au/quote/
+- https://andersonglass.com.au/guides/
+- https://andersonglass.com.au/answers/
 - https://andersonglass.com.au/services/commercial-glazing/
 - https://andersonglass.com.au/services/office-partitions/
 - https://andersonglass.com.au/services/shower-screens/
@@ -47,6 +57,12 @@ AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 
 - https://andersonglass.com.au/projects/thorn-office-fitout/
 - https://andersonglass.com.au/projects/chen-foods-offices/
 - https://andersonglass.com.au/projects/frameless-shower-screens/
+- https://andersonglass.com.au/guides/how-glass-thickness-is-chosen/
+- https://andersonglass.com.au/guides/why-we-measure-after-tiling/
+- https://andersonglass.com.au/guides/toughened-or-laminated/
+- https://andersonglass.com.au/guides/choosing-office-partitions/
+- https://andersonglass.com.au/guides/broken-window-first-hour/
+- https://andersonglass.com.au/guides/splashback-or-tiles/
 - https://andersonglass.com.au/standards/ — how glass is selected under AS 1288
 - https://andersonglass.com.au/facts/ — business facts in plain text
 

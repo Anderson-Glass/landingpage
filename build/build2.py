@@ -8,12 +8,13 @@ import json, html, shutil, hashlib
 from pathlib import Path
 
 import build as C   # content model + helpers
+import content_extra as X   # guides, area detail, project stories, answers
 
 BASE = Path(__file__).parent
 OUT = BASE.parent / "site"
 SITE = C.SITE
 ORG = C.ORG
-NAV = C.NAV
+NAV = C.NAV + [("/guides/", "Guides"), ("/answers/", "Answers")]
 SERVICES = C.SERVICES
 AREAS = C.AREAS
 PROJECTS = C.PROJECTS
@@ -618,6 +619,7 @@ def build_projects():
 def build_case(p):
     facts = "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a, b in p["facts"])
     paras = "".join(f"<p>{t}</p>" for t in p["body"])
+    paras += "".join(f"<p>{t}</p>" for t in X.PROJECT_EXTRA.get(p["slug"], []))
     body = f"""
 <main id="main">
   {phero("Project", p['name'], p['lede'], [("/", "Home"), ("/projects/", "Work")], fig=p['img'], ref="PLATE")}
@@ -651,6 +653,10 @@ def build_case(p):
 
 def build_area(a):
     subs = "".join(f"<li>{s}</li>" for s in a["suburbs"])
+    d = X.AREA_DETAIL.get(a["slug"], {})
+    detail_html = "".join(f"<p>{p}</p>" for p in d.get("detail", []))
+    common = d.get("common", [])
+    common_html = ("<h3>Work we do here</h3><ul>" + "".join(f"<li>{c}</li>" for c in common) + "</ul>") if common else ""
     ledger = "".join(f'<a href="/services/{s["slug"]}/"><span class="n">{i:02d}</span>'
                      f'<span class="nm">{s["title"]}</span><span class="ds">{s["short"]}</span>'
                      f'<span class="ar">{ARROW}</span></a>' for i, s in enumerate(SERVICES, 1))
@@ -663,6 +669,8 @@ def build_area(a):
       <div class="prose reveal">
         <h2>What we do in <em>{a['name'].split()[0]}.</em></h2>
         <p>Commercial glazing, office partitions, shower screens, glass replacement and mirrors — supplied and installed. Site visits are scheduled by corridor, so the drive is part of the plan rather than an extra.</p>
+        {detail_html}
+        {common_html}
         <h3>Suburbs we work in</h3>
         <ul style="columns:2;column-gap:24px">{subs}</ul>
         <p class="note">Outside this list? Ask — larger jobs travel further.</p>
@@ -895,13 +903,180 @@ def build_404():
     shell("Page not found — Anderson Glass & Glazing", "That page could not be found.", "/404.html", body)
 
 
+# ---------------------------------------------------------------- guides
+
+def _guide_links(slug):
+    """Other guides, so each one links sideways instead of dead-ending."""
+    others = [g for g in X.GUIDES if g["slug"] != slug]
+    return "".join(
+        f'<a href="/guides/{o["slug"]}/"><span class="nm">{o["title"]}</span>'
+        f'<span class="ds">{o["dek"]}</span><span class="ar">{ARROW}</span></a>'
+        for o in others)
+
+
+def build_guide(g):
+    secs = "".join(
+        f"<h2>{h}</h2>" + "".join(f"<p>{p}</p>" for p in paras)
+        for h, paras in g["sections"])
+    pts = "".join(f"<li>{p}</li>" for p in g["points"])
+    faq = "".join(
+        f'<details><summary>{q}<i aria-hidden="true"></i></summary><div class="a">{a}</div></details>'
+        for q, a in g["faqs"])
+    svc = next((s for s in SERVICES if s["slug"] == g["service"]), SERVICES[0])
+    url = SITE + f"/guides/{g['slug']}/"
+    words = sum(len(p.split()) for _, ps in g["sections"] for p in ps)
+    words += sum(len(p.split()) for p in g["points"])
+    words += sum(len(q.split()) + len(a.split()) for q, a in g["faqs"])
+
+    article_ld = {
+        "@type": "Article", "headline": g["title"], "description": g["dek"],
+        "url": url, "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+        "author": {"@id": SITE + "/#org"}, "publisher": {"@id": SITE + "/#org"},
+        "datePublished": "2026-11-08", "dateModified": "2026-11-08",
+        "wordCount": words, "inLanguage": "en-AU",
+        "about": {"@type": "Thing", "name": html.unescape(svc["title"])},
+    }
+    faq_ld = {"@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+        for q, a in g["faqs"]]}
+    crumbs = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE + "/guides/"},
+        {"@type": "ListItem", "position": 3, "name": g["title"], "item": url}]}
+
+    body = f"""
+<main id="main">
+  {phero("Guide", g['title'], g['dek'], [("/", "Home"), ("/guides/", "Guides")],
+         fig=svc["img"], ref="GUIDE")}
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">Guide</span><span class="lbl">{words} words</span></div>
+    <div class="split">
+      <div class="prose reveal">
+        {secs}
+      </div>
+      <aside class="split-fig">
+        <div class="plate plate--w">
+          <b>In short</b>
+          <ul style="margin:12px 0 22px;padding-left:18px;display:grid;gap:10px">{pts}</ul>
+          <b>Related</b>
+          <p style="margin:10px 0 0"><a href="/services/{svc['slug']}/">{svc['title']} {ARROW}</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">Questions</span><span class="lbl">{g['title']}</span></div>
+    <div class="faq reveal">{faq}</div>
+  </section>
+
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">More guides</span><span class="lbl">Keep reading</span></div>
+    <div class="ledger reveal" style="grid-template-columns:repeat(2,1fr)">{_guide_links(g['slug'])}</div>
+  </section>
+
+  <section class="sect cta">
+    <div class="wrap">
+      <span class="lbl lbl--orange">Next step</span>
+      <h2 style="margin:14px 0 16px">Send a photo.<br>We'll <em>reply.</em></h2>
+      <div class="hero-actions"><a class="btn btn--lg" href="/quote/">Request a quote {ARROW}</a>
+      <a class="btn btn--lg btn--ghost" href="tel:{ORG['tel']}">{ORG['phone']}</a></div>
+    </div>
+  </section>
+</main>"""
+    shell(f"{g['title']} — Anderson Glass & Glazing",
+          html.unescape(g["dek"])[:155],
+          f"/guides/{g['slug']}/", body, active="/guides/",
+          extra_json=[article_ld, faq_ld, crumbs], og_img=svc["img"])
+
+
+def build_guides_index():
+    cards = "".join(
+        f'<a class="area" href="/guides/{g["slug"]}/"><h3>{g["title"]}</h3><p>{g["dek"]}</p>'
+        f'<span class="go">Read {ARROW}</span></a>' for g in X.GUIDES)
+    body = f"""
+<main id="main">
+  {phero("Guides", "How glass<br>actually <em>works.</em>",
+         "The decisions behind a glazing job, written plainly — what gets measured, what the standards ask for, and why two similar openings can need different glass.",
+         [("/", "Home")], ref="GUIDES")}
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">{len(X.GUIDES)} guides</span><span class="lbl">No prices, no sales pitch</span></div>
+    <div class="areas reveal">{cards}</div>
+  </section>
+  <section class="sect wrap">
+    <div class="split">
+      <div class="prose reveal">
+        <h2>Why we publish <em>this.</em></h2>
+        <p>Most glazing questions have an answer that does not depend on who you hire: why glass is measured after tiling, why a toughened panel cannot be drilled, why the same window in two rooms can need different glass. Knowing those things makes you harder to sell to, which is the point.</p>
+        <p>What we will not do is put a number on a job we have not seen. Glass is made to the opening, and the make-up depends on the location — so the guides explain the decision without pretending to make it for you.</p>
+      </div>
+      <div class="split-fig">{plate('curved-glass', 'Curved glass partition', 'AG-GUIDES', sizes='(max-width:860px) 100vw, 50vw')}</div>
+    </div>
+  </section>
+  <section class="sect cta">
+    <div class="wrap">
+      <span class="lbl lbl--orange">Still unsure?</span>
+      <h2 style="margin:14px 0 16px">Ask the <em>glazier.</em></h2>
+      <div class="hero-actions"><a class="btn btn--lg" href="/quote/">Request a quote {ARROW}</a>
+      <a class="btn btn--lg btn--ghost" href="/answers/">Read the answers {ARROW}</a></div>
+    </div>
+  </section>
+</main>"""
+    shell("Glazing guides — Anderson Glass & Glazing",
+          "Plain-English guides to glass selection, shower screens, partitions and replacement glass from a working Melbourne glazier.",
+          "/guides/", body, active="/guides/")
+
+
+def build_answers():
+    blocks = ""
+    all_qa = []
+    for group, qas in X.ANSWERS:
+        all_qa.extend(qas)
+        items = "".join(
+            f'<details><summary>{q}<i aria-hidden="true"></i></summary><div class="a">{a}</div></details>'
+            for q, a in qas)
+        blocks += f"""
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">{group}</span><span class="lbl">{len(qas)} answers</span></div>
+    <div class="faq reveal">{items}</div>
+  </section>"""
+
+    faq_ld = {"@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+        for q, a in all_qa]}
+    crumbs = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Answers", "item": SITE + "/answers/"}]}
+
+    body = f"""
+<main id="main">
+  {phero("Answers", "Every question<br>we actually <em>get.</em>",
+         "Straight answers on glass selection, shower screens, partitions, coverage and how a job runs — without a sales pitch attached.",
+         [("/", "Home")], ref="ANSWERS")}
+  {blocks}
+  <section class="sect cta">
+    <div class="wrap">
+      <span class="lbl lbl--orange">Not covered?</span>
+      <h2 style="margin:14px 0 16px">Ask <em>directly.</em></h2>
+      <div class="hero-actions"><a class="btn btn--lg" href="/quote/">Send an enquiry {ARROW}</a>
+      <a class="btn btn--lg btn--ghost" href="tel:{ORG['tel']}">{ORG['phone']}</a></div>
+    </div>
+  </section>
+</main>"""
+    shell(f"Glazing answers — Anderson Glass & Glazing ({len(all_qa)} questions)",
+          "Answers to the questions a Melbourne glazier gets asked most: glass thickness, AS 1288, shower screen measurement, partition types, coverage and process.",
+          "/answers/", body, active="/answers/", extra_json=[faq_ld, crumbs])
+
+
 # ---------------------------------------------------------------- meta files
 
 def build_meta():
-    pages = ["/", "/services/", "/projects/", "/service-areas/", "/standards/", "/facts/", "/quote/"]
+    pages = ["/", "/services/", "/projects/", "/service-areas/", "/standards/", "/facts/", "/quote/",
+             "/guides/", "/answers/"]
     pages += [f"/services/{s['slug']}/" for s in SERVICES]
     pages += [f"/service-areas/{a['slug']}/" for a in AREAS]
     pages += [f"/projects/{p['slug']}/" for p in PROJECTS]
+    pages += [f"/guides/{g['slug']}/" for g in X.GUIDES]
     today = "2026-11-07"
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for p in pages:
@@ -965,6 +1140,9 @@ def build_meta():
 
 ## Standards
 AS 1288 (glass in buildings), AS 2208 (safety glazing), AS 4666 (IGUs), AS 1178 (balustrades), AS 1428.1 (visibility).
+
+## Guides (long-form answers)
+{chr(10).join(f"- {g['title']}: {g['dek']} ({SITE}/guides/{g['slug']}/)" for g in X.GUIDES)}
 
 ## Pages
 {chr(10).join(f"- {SITE}{p}" for p in pages)}
@@ -1036,6 +1214,10 @@ def main():
     for a in AREAS:
         build_area(a)
     build_standards()
+    build_answers()
+    build_guides_index()
+    for g in X.GUIDES:
+        build_guide(g)
     build_facts()
     build_quote()
     build_404()
