@@ -18,6 +18,13 @@ const UPLOAD = {
 const RATE = { window: 10 * 60 * 1000, max: 5 };
 const hits = new Map(); // isolate-local best effort; resets when the isolate recycles
 
+// Old paths that should never 404 — the bayside corridor was split out of
+// bayside-melbourne and given a longer name.
+const REDIRECTS = {
+  "/service-areas/bayside-melbourne/": "/service-areas/bayside-to-port-phillip/",
+  "/service-areas/bayside-melbourne": "/service-areas/bayside-to-port-phillip/",
+};
+
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -228,6 +235,10 @@ export default {
     // one canonical host: www -> apex
     if (url.hostname.startsWith("www.")) {
       return Response.redirect(`https://${url.hostname.slice(4)}${url.pathname}${url.search}`, 301);
+    }
+
+    if (REDIRECTS[url.pathname]) {
+      return Response.redirect(`https://${url.hostname}${REDIRECTS[url.pathname]}`, 301);
     }
 
     if (url.pathname === "/api/enquiry" || url.pathname === "/api/enquiry/") {

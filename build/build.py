@@ -213,31 +213,70 @@ AREAS = [
         "slug": "south-east-melbourne",
         "name": "South East Melbourne",
         "blurb": "Home base. Narre Warren, Berwick, Cranbourne, Pakenham, Dandenong and the Casey corridor — same-week site visits are normal here.",
-        "suburbs": ["Narre Warren", "Berwick", "Cranbourne", "Pakenham", "Dandenong", "Hallam", "Officer", "Beaconsfield"],
+        "suburbs": ["Narre Warren", "Narre Warren East", "Narre Warren North", "Narre Warren South", "Berwick",
+                    "Cranbourne", "Cranbourne East", "Cranbourne West", "Cranbourne North", "Clyde North",
+                    "Pakenham", "Officer", "Beaconsfield", "Botanic Ridge", "Junction Village", "Devon Meadows",
+                    "Dandenong", "Dandenong North", "Hallam", "Endeavour Hills", "Hampton Park", "Lynbrook",
+                    "Doveton", "Keysborough", "Noble Park", "Springvale", "Rowville", "Lysterfield"],
+    },
+    {
+        "slug": "bayside-to-port-phillip",
+        "name": "Bayside & Port Phillip",
+        "blurb": "The bay from Mount Eliza around to Port Melbourne — Frankston, Mentone, Sandringham, Brighton and the beachside suburbs in between.",
+        "suburbs": ["Mount Eliza", "Frankston", "Frankston South", "Seaford", "Carrum", "Patterson Lakes",
+                    "Chelsea", "Chelsea Heights", "Edithvale", "Aspendale", "Mordialloc", "Parkdale", "Mentone",
+                    "Highett", "Moorabbin", "Cheltenham", "Black Rock", "Beaumaris", "Sandringham", "Hampton",
+                    "Brighton", "Brighton East", "Elwood", "St Kilda", "Balaclava", "Albert Park",
+                    "South Melbourne", "Port Melbourne"],
     },
     {
         "slug": "inner-east-melbourne",
         "name": "Inner East Melbourne",
-        "blurb": "Office fitouts and period-home glazing from Hawthorn out through Camberwell, Kew and Balwyn.",
-        "suburbs": ["Hawthorn", "Camberwell", "Kew", "Balwyn", "Surrey Hills", "Glen Iris", "Richmond", "Box Hill"],
+        "blurb": "Office fitouts and period-home glazing from Hawthorn out through Camberwell, Kew, Balwyn and the eastern suburbs.",
+        "suburbs": ["Hawthorn", "Hawthorn East", "Camberwell", "Canterbury", "Kew", "Kew East", "Balwyn",
+                    "Balwyn North", "Deepdene", "Surrey Hills", "Glen Iris", "Malvern", "Armadale", "Toorak",
+                    "South Yarra", "Richmond", "Burnley", "Cremorne", "Box Hill", "Box Hill North", "Burwood",
+                    "Chadstone", "Mount Waverley", "Glen Waverley", "Wheelers Hill", "Doncaster", "Templestowe",
+                    "Bulleen", "Blackburn", "Nunawading", "Mitcham", "Ringwood", "Vermont", "Boronia",
+                    "Wantirna", "Knoxfield", "Rowville"],
     },
     {
         "slug": "northern-melbourne",
         "name": "Northern Melbourne",
-        "blurb": "Warehouse and commercial glazing through Epping, Preston, Thomastown and Craigieburn.",
-        "suburbs": ["Epping", "Preston", "Thomastown", "Craigieburn", "Campbellfield", "Reservoir", "Coburg", "Bundoora"],
+        "blurb": "Warehouse and commercial glazing through Epping, Preston, Thomastown, Craigieburn and the northern growth corridor.",
+        "suburbs": ["Epping", "South Morang", "Mill Park", "Lalor", "Thomastown", "Campbellfield",
+                    "Craigieburn", "Roxburgh Park", "Broadmeadows", "Wollert", "Mernda", "Doreen",
+                    "Bundoora", "Greensborough", "Eltham", "Watsonia", "Heidelberg", "Ivanhoe",
+                    "Preston", "Reservoir", "Coburg", "Coburg North", "Thornbury", "Northcote",
+                    "Brunswick", "Pascoe Vale", "Essendon", "Airport West", "Tullamarine"],
     },
     {
-        "slug": "bayside-melbourne",
-        "name": "Bayside Melbourne",
-        "blurb": "Shower screens, mirrors and glass replacement through Mentone, Mordialloc and the beachside suburbs.",
-        "suburbs": ["Mentone", "Mordialloc", "Cheltenham", "Moorabbin", "Bentleigh", "Brighton", "Sandringham", "Hampton"],
+        "slug": "west-and-inner-west",
+        "name": "West & Inner West",
+        "blurb": "Werribee, Point Cook, Sunshine, Footscray and the western corridor — new estates, warehouses and older brick homes.",
+        "suburbs": ["Werribee", "Werribee South", "Hoppers Crossing", "Point Cook", "Williams Landing",
+                    "Truganina", "Tarneit", "Wyndham Vale", "Manor Lakes", "Laverton", "Altona",
+                    "Altona Meadows", "Altona North", "Williamstown", "Williamstown North", "Newport",
+                    "Yarraville", "Seddon", "Kingsville", "Maidstone", "Braybrook", "Footscray",
+                    "West Footscray", "Sunshine", "Sunshine West", "Albion", "Ardeer", "Deer Park",
+                    "Caroline Springs", "Burnside", "Taylors Lakes", "Keilor", "Keilor East", "St Albans",
+                    "Melton", "Melton South", "Rockbank", "Aintree"],
+    },
+    {
+        "slug": "melbourne-city-and-inner",
+        "name": "Melbourne City & Inner",
+        "blurb": "The CBD and the first ring — East Melbourne, Carlton, Fitzroy, Collingwood, Docklands and Southbank apartments and terraces.",
+        "suburbs": ["Melbourne", "East Melbourne", "West Melbourne", "North Melbourne", "Carlton",
+                    "Carlton North", "Fitzroy", "Fitzroy North", "Collingwood", "Abbotsford", "Docklands",
+                    "Southbank", "South Wharf", "Kensington", "Flemington", "Parkville", "Princes Hill",
+                    "Travancore", "Ascot Vale", "Moonee Ponds", "Brunswick East", "Clifton Hill"],
     },
     {
         "slug": "gippsland",
         "name": "Gippsland",
         "blurb": "Larger jobs and scheduled installs through Warragul, Drouin, Traralgon and the Latrobe Valley.",
-        "suburbs": ["Warragul", "Drouin", "Traralgon", "Moe", "Morwell", "Leongatha", "Wonthaggi", "Sale"],
+        "suburbs": ["Warragul", "Drouin", "Traralgon", "Moe", "Morwell", "Leongatha", "Wonthaggi", "Sale",
+                    "Korumburra", "Phillip Island"],
     },
 ]
 
@@ -298,7 +337,7 @@ HOME_FAQ = [
     ("Are you licensed and insured?",
      "Anderson Glass &amp; Glazing Pty Ltd is a registered company (ACN 169 467 216, ABN 24 202 344 169) working across Melbourne metro. Current public liability and workers compensation details are provided with any quote or site induction pack."),
     ("What areas do you cover?",
-     "Melbourne metro, with same-week visits across the south east, inner east, north and bayside. Gippsland work is scheduled in blocks. If you are further out, ask — larger jobs travel."),
+     "All of Melbourne metro — south east, bayside and Port Phillip, inner east, north, west and the CBD — with same-week visits in the south east and scheduled runs elsewhere. Gippsland work is scheduled in blocks. If you are further out, ask — larger jobs travel."),
     ("How long does a job take?",
      "Shower screens and mirrors are typically one to two weeks from measure, because toughened glass is made to your dimensions. Replacement glass can be same-day or next-day for common sizes. Installation itself is usually a few hours. Lead times are confirmed at quote, not published, because they move with supplier load."),
     ("Do you supply and install, or install only?",
@@ -1021,7 +1060,7 @@ def build_areas_index():
   </div></section>
 </main>"""
     shell("Service areas — Anderson Glass & Glazing, Melbourne",
-          "Glazing service areas across Melbourne: south east, inner east, north, bayside and Gippsland.",
+          "Glazing service areas across Melbourne — south east, bayside and Port Phillip, inner east, north, west and the CBD, plus Gippsland by schedule.",
           "/service-areas/", body, active="/service-areas/")
 
 
@@ -1266,7 +1305,7 @@ Sitemap: {SITE}/sitemap.xml
 - Workshop: {ORG['location']}
 - Phone: {ORG['phone']}
 - Email: {ORG['email']}
-- Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
+- Service area: all Melbourne metro — south east, bayside/Port Phillip, inner east, north, west, CBD; Gippsland by schedule
 
 ## Services
 {chr(10).join(f"- {html.unescape(s['title'])}: {html.unescape(s['short'])} ({SITE}/services/{s['slug']}/)" for s in SERVICES)}

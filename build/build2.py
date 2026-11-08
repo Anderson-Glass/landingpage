@@ -696,6 +696,15 @@ def build_area(a):
 
 
 def build_areas_index():
+    # every suburb we cover, grouped by corridor — one indexed page carrying the
+    # full list beats eighty thin suburb pages, and Google treats it as substance
+    # rather than doorway spam
+    idx = "".join(
+        f'<div class="suburbgroup"><h3><a href="/service-areas/{a["slug"]}/">{a["name"]}</a></h3>'
+        f'<p class="suburbcount">{len(a["suburbs"])} suburbs</p>'
+        f'<ul class="suburblist">{"".join(f"<li>{s}</li>" for s in a["suburbs"])}</ul></div>'
+        for a in AREAS)
+    total = sum(len(a["suburbs"]) for a in AREAS)
     body = f"""
 <main id="main">
   {phero("Coverage", "Melbourne metro,<br>and <em>beyond.</em>",
@@ -706,6 +715,10 @@ def build_areas_index():
       {''.join(f'<a class="area" href="/service-areas/{a["slug"]}/"><h3>{a["name"]}</h3><p>{a["blurb"]}</p><span class="go">View area {ARROW}</span></a>' for a in AREAS)}
       <a class="area area--ask" href="/quote/"><h3>Somewhere else?</h3><p>Give us the suburb and the scope. We will tell you honestly whether the drive makes sense.</p><span class="go">Ask us {ARROW}</span></a>
     </div>
+  </section>
+  <section class="sect wrap">
+    <div class="sect-meta"><span class="lbl">{total} suburbs</span><span class="lbl">Every suburb we cover</span></div>
+    <div class="suburbindex reveal">{idx}</div>
   </section>
   <section class="sect cta">
     <div class="wrap">
@@ -718,7 +731,7 @@ def build_areas_index():
   </section>
 </main>"""
     shell("Service areas — Anderson Glass & Glazing, Melbourne",
-          "Glazing service areas across Melbourne: south east, inner east, north, bayside and Gippsland.",
+          "Glazing service areas across Melbourne — south east, bayside and Port Phillip, inner east, north, west and the CBD, plus Gippsland by schedule.",
           "/service-areas/", body, active="/service-areas/")
 
 
@@ -1126,7 +1139,7 @@ def build_meta():
 - ABN {ORG['abn']} · ACN {ORG['acn']}
 - Workshop: {ORG['location']}
 - Phone: {ORG['tel']} · Email: {ORG['email']}
-- Service area: Melbourne metro (south east, inner east, north, bayside); Gippsland by schedule
+- Service area: all Melbourne metro — south east, bayside/Port Phillip, inner east, north, west, CBD; Gippsland by schedule
 - Machine-readable facts: {SITE}/facts.json
 
 ## Services

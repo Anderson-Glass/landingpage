@@ -416,6 +416,60 @@ AREA_DETAIL = {
                    "Wall mirrors and mirror wardrobe doors",
                    "Sliding glass doors onto decks and alfrescos"],
     },
+    "bayside-to-port-phillip": {
+        "detail": [
+            "This is the bay — Mount Eliza and Frankston around through Seaford, Carrum and Mordialloc, then up "
+            "through Mentone, Sandringham and Brighton to St Kilda and Port Melbourne. It is the longest single "
+            "run we cover, and the work follows the water.",
+            "Two things dominate. First, glass that lives outdoors: pool fencing, balustrades, wind barriers on "
+            "terraces, and doors that open onto decks. Salt air attacks the fittings on those before it touches "
+            "the glass, so the hardware choice decides how they look in three years. Second, renovated "
+            "bathrooms in houses from the 1920s through to the 1990s — bayside bathrooms are often tight, out "
+            "of square, and tiled before anyone measured properly.",
+            "Closer to the city, in St Kilda, Albert Park and Port Melbourne, the mix shifts to apartments and "
+            "period terraces: mirrors that show every curve in an old wall, and splashbacks in kitchens where "
+            "the cabinetry is the feature.",
+        ],
+        "common": ["Frameless glass pool fencing and balustrades",
+                   "Shower screens in renovated bayside bathrooms",
+                   "Wall mirrors, mirror wardrobe doors and splashbacks",
+                   "Sliding and stacking doors onto decks and terraces"],
+    },
+    "west-and-inner-west": {
+        "detail": [
+            "The west splits in two. Out past Werribee and Point Cook it is new estates: larger openings, "
+            "bigger sliding doors, balustrades on first-floor decks, and bathrooms being finished by owners "
+            "who bought a house package. Those jobs are unforgiving on measurement because everything is "
+            "straight except where the trades rushed.",
+            "Closer in — Footscray, Yarraville, Seddon, Sunshine — it is older brick and weatherboard, often "
+            "renovated, often with a bathroom squeezed into a space that was never designed to be one. Mirrors "
+            "on those walls show every curve, and screens need measuring after tiling or not at all.",
+            "There is steady commercial work too: warehouses and showrooms along Boundary Road and the "
+            "industrial estates, where glass divides space inside a big shed rather than forming an outside "
+            "wall.",
+        ],
+        "common": ["Shower screens in house-package and renovation bathrooms",
+                   "Sliding and stacking doors onto decks",
+                   "Frameless glass balustrades on new builds",
+                   "Warehouse and showroom office glazing"],
+    },
+    "melbourne-city-and-inner": {
+        "detail": [
+            "City work is apartment work. Docklands, Southbank and the CBD bring building access rules, "
+            "loading dock bookings and lifts that have to be reserved — which is why a city job starts with "
+            "logistics, not with glass.",
+            "In the terraces of East Melbourne, Carlton, Fitzroy and Collingwood, the constraints are the "
+            "opposite: narrow stairs, heritage detail and walls that have had a hundred and fifty years to go "
+            "out of square. A mirror or a splashback here is a fitting job as much as a glass job, and glass "
+            "that was cut from a drawing will not sit flush.",
+            "The mix is roughly half residential renovation and half small commercial — cafés, offices and "
+            "consulting rooms going into street-front spaces where the shopfront is the whole first impression.",
+        ],
+        "common": ["Apartment shower screens, mirrors and splashbacks",
+                   "Heritage terrace glazing and window replacement",
+                   "Shopfronts and café glazing",
+                   "Small office partition and door work"],
+    },
     "gippsland": {
         "detail": [
             "Gippsland is scheduled work rather than same-week work. Jobs are grouped into blocks — Warragul, "

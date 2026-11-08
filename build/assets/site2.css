@@ -397,3 +397,13 @@ p { text-wrap: pretty; }
   .footer-grid > div { border-right: 0; border-bottom: 1px solid var(--rule); }
   .footer-grid > div:last-child { border-bottom: 0; }
 }
+
+/* Service-area suburb index — every covered suburb on one page */
+.suburbindex { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border-top: 1.5px solid var(--ink); border-left: 1.5px solid var(--ink); }
+.suburbgroup { background: var(--paper); padding: clamp(16px, 2vw, 24px); border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+.suburbgroup h3 { font-size: 1rem; margin: 0 0 4px; }
+.suburbgroup h3 a { color: var(--ink); }
+.suburbcount { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.suburblist { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 12px; list-style: none; margin: 0; padding: 0; }
+.suburblist li { font-size: .8rem; color: var(--ink-2); line-height: 1.45; }
+@media (max-width: 560px) { .suburblist { grid-template-columns: 1fr; } }
